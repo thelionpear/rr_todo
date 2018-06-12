@@ -1,4 +1,4 @@
-class Api::ItemsController < ApplicationController
+class Api::ItemsController < Api::ApiController
   before_action :set_item, only: [:update, :destroy] 
   def index
     render json: Item.all 
@@ -9,7 +9,7 @@ class Api::ItemsController < ApplicationController
     if item.save
       render json: item 
     else 
-      render json: { errors: item.errors }, status: :422
+      render_errors(item) 
     end 
   end
 
