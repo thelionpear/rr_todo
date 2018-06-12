@@ -21,11 +21,17 @@ class App extends Component {
   }
 
   updateItem = (id) => { 
-
+    const todos = this.state.todos.map( t => {
+      if (t.id === id)
+        return {...t, complete: !t.complete}
+      return t 
+    })
+    this.setState({ todos })
   }
 
   deleteItem = (id) => {
-
+    const { todos } = this.state;
+    this.setState({ todos: todos.filter( t => t.id !== id) }) 
   }
 
   render() {
